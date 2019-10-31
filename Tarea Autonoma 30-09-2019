@@ -1,0 +1,244 @@
+/******************************************************************************
+
+1. En una tienda departamental ofrecen descuentos a los clientes en la Navidad, de acuerdo con el monto de su compra. El criterio para establecer el descuento se muestra abajo. Construye el correspondiente programa en C que, al recibir como dato el monto de la compra del cliente, obtenga el precio real que debe pagar luego de aplicar el descuento correspondiente.
+
+Compra < $800 ⇒ Descuento 0%.
+$800  Compra  $1500 ⇒ Descuento 10%.
+$1500 < Compra  $5000 ⇒ Descuento 15%.
+$5000 < Compra ⇒ Descuento 20%.
+
+2. Construye el respectivo programa en C que, al recibir como datos tres variables reales que representan los lados de un probable triángulo, determine si esos lados corresponden a un triángulo. En caso de serlo, además de escribir el área correspondiente compruebe si el mismo es equilátero, isósceles o escaleno.
+Datos: L1, L2 y L3 (variables de tipo real que representan los posibles lados de un triángulo).
+Consideraciones:
+• Si se cumple la propiedad de que la suma de los dos lados menores es menor a la del lado restante, es un triángulo.
+• El área se obtiene aplicando la siguiente fórmula:
+
+3. Escribe un programa en C que obtenga y escriba tanto los términos como la suma de los términos de la siguiente serie: (SENTENCIA WHILE)
+
+2, 7, 10, 15, 18, 23, . . ., 2500
+
+Donde: I es una variable de tipo entero que se utiliza para incrementar el valor de los términos de la serie.
+SSE es una variable de tipo entero que se utiliza para sumar los términos.
+CAM es una variable de tipo entero que se utiliza para distinguir el valor a sumar.
+
+4. Los organizadores de un acto electoral solicitaron realizar un programa de cómputo para manejar el conteo de los votos. En la elección hay cinco candidatos, los cuales se representan con los valores comprendidos de 1 a 5. Construye un programa en C que permita obtener el número de votos de cada  candidato y el porcentaje que obtuvo respecto al total de los votantes. El usuario ingresa los votos de manera desorganizada, tal y como se obtienen en una elección, el final de datos se representa por un cero. Observa como ejemplo la siguiente lista: (SENTENCIA DO-WHILE)
+
+2 5 5 4 3 4 4 5 1 2 4 3 1 2 4 5 0
+
+Donde: 1 representa un voto para el candidato 1, 3 un voto para el candidato 3, y así sucesivamente.
+Datos: VOT1, VOT2,..., 0 (variable de tipo entero que representa el voto a un candidato).
+
+5. A la clase de Estructuras de Datos del profesor López asiste un grupo numeroso de alumnos. Construye un programa en C que  imprima la matrícula y el promedio de las cinco calificaciones de cada alumno. Además, debe obtener la matrícula y el promedio tanto del mejor como del peor alumno. (SENTENCIA FOR)
+
+Datos: MAT1, CAL1,1, CAL1,2, CAL1,3, CAL1,4, CAL1,5
+MAT2, CAL2,1, CAL2,2, CAL2,3, CAL2,4, CAL2,5
+. . .
+0
+
+Donde: MATi es una variable de tipo entero que representa la matrícula del alumno i. El fin de datos está dado por 0.
+CALi,j es una variable de tipo real que representa la calificación j del alumno i.
+
+*******************************************************************************/
+#include <stdio.h>
+#include <math.h>
+
+void main()
+{
+   int opcion; 
+    float L1 = 0;
+    float L2 = 0;
+    float L3 = 0;
+    float Area = 0;
+    float semiPer = 0;
+    float compra,precio,descuento;
+    int i=1, cam=2, sse=0;
+    int votos,voto,cantV1=0,cantV2=0,cantV3=0,cantV4=0,cantV5=0;
+    float porcV1=0,porcV2=0,porcV3=0,porcV4=0,porcV5=0,totalVotos=0;
+    int j,alumnos,cont,matricula,mamat,memat;
+    float suma=0,prom=0,cal,mayor=0,menor=10000;
+    
+while(opcion!=6)
+{
+    printf("\n\nDentro de este programa hay varios programas para escojer\n");
+    printf("Escoja las diferentes opciones que se muestran a continuacion:\n");
+    printf("Opcion 1: Descuentos en Compras Navidenias\n");
+    printf("Opcion 2: Obtener el area y tipo de un Triangulo\n");
+    printf("Opcion 3: escriba la suma de los terminos de la siguiente serie\n");
+    printf("Opcion 4: Simulacion de votacion electoral\n");
+    printf("Opcion 5: Simulador de calificaciones de alumnos\n");
+    printf("Opcion 6: Salir\n");    
+    printf("Escoja una opcion usando numeros del 1 al 5:");
+    scanf("%d",&opcion);
+    
+  switch(opcion){
+        case 1://Ejercio 1
+     printf("Ingrese el monto de compra:");
+    scanf("%f",&compra);
+    
+    if(compra<=800)
+    {
+        precio=compra;
+        printf("0 porciento de descuento!\n");
+        printf("El monto de compra fue:%.2f\n", compra);
+        printf("El precio final aplicando el descuento es: %.2f\n",precio);
+        
+    }
+    else if(compra>=800 && compra<=1500){
+        
+        precio=compra-(compra*0.1);
+        printf("10 porciento de descuento!\n");
+        printf("El monto de compra fue: %.2f\n", compra);
+        printf("El precio final aplicando el descuento es: %.2f\n",precio);
+        
+    }
+        
+        
+    else if (compra>=1500 && compra<=5000){
+        precio=compra-(compra*0.15);
+        printf("15 porciento de descuento!\n");
+        printf("El monto de compra fue: %.2f\n", compra);
+        printf("El precio final aplicando el descuento es:%.2f\n",precio);
+    }    
+        
+    else if (compra>=5000){
+        precio=compra-(compra*0.2);
+        printf("20 porciento de descuento!\n");
+        printf("El monto de compra fue: %.2f\n", compra);
+        printf("El precio final aplicando el descuento es:%.2f\n",precio);
+    }        
+    break;
+    
+        case 2://Ejercio 2
+printf("Ingrese el Lado 1 para calcular el area: ");
+    scanf("%f",&L1);
+    
+    printf("Ingrese el Lado 2 para calcular el area: ");
+    scanf("%f",&L2);
+    
+    printf("Ingrese el Lado 3 para calcular el area: ");
+    scanf("%f",&L3);
+    
+    semiPer = (L1+L2+L3)/2;
+    Area = sqrt(semiPer*(semiPer - L1)*(semiPer - L2)*(semiPer - L3));
+    
+  
+    
+    if(L3>(L1-L2) && L2>(L1-L3) && L1>(L2-L3)){
+    
+     printf("Si es un triangulo!\n");
+    }
+    else if(semiPer==L1 && semiPer==L2 && semiPer==L3)
+    {
+     printf("No se puede calcular si un lado es igual al semiperimetro!\n");  
+    
+    }else{
+        
+        printf("No es triangulo!\n");
+    }
+    
+    
+    if(L1==L2 && L1==L3 && L2==L3)
+    {
+     printf("El triangulo es Equilatero!\n"); 
+    }
+    else if(L1!=L2 && L1!=L3 && L2!=L3 )
+    {
+     printf("El triangulo es Escaleno! \n");
+    }
+    else{
+     printf("El triangulo es isósceles!\n");
+    }
+
+     printf ("El Area del Triangulo es: %.2f\n", Area);
+     
+    break;
+        case 3:// Ejercio L3
+        while(cam <= 2500){
+ 
+printf("%i ", cam);
+sse=sse+cam;//suma +=n
+ 
+if(i%2!=0){
+cam=cam+5;
+}
+else{
+cam=cam+3;
+}
+i++;
+}
+ 
+printf("\nLa suma total es:%i\n",sse);
+    
+    break;
+        case 4: //Ejercio 4
+    do{    
+        printf("Ingrese su voto:");
+        scanf("%d",&voto);
+        if(voto==1)
+        cantV1++;
+        else if(voto==2)
+        cantV2++;
+        else if(voto==3)
+        cantV3++;
+        else if(voto==4)
+        cantV4++;   
+        else if(voto==5)
+        cantV5++; 
+    totalVotos=(cantV1+cantV2+cantV3+cantV4+cantV5);
+    porcV1=(cantV1/totalVotos)*100;
+    porcV2=(cantV2/totalVotos)*100;
+    porcV3=(cantV3/totalVotos)*100;
+    porcV4=(cantV4/totalVotos)*100;
+    porcV5=(cantV5/totalVotos)*100;
+    }while(voto!=0);
+   
+    printf("Total de votos del candidato 1 es:%d con un porcentaje de:%.2f\n", cantV1,porcV1);
+    printf("Total de votos del candidato 2 es:%d con un porcentaje de:%.2f\n", cantV2,porcV2);
+    printf("Total de votos del candidato 3 es:%d con un porcentaje de:%.2f\n", cantV3,porcV3);
+    printf("Total de votos del candidato 4 es:%d con un porcentaje de:%.2f\n", cantV4,porcV4);
+    printf("Total de votos del candidato 5 es:%d con un porcentaje de:%.2f\n", cantV5,porcV5);
+    
+    break;
+        case 5://Ejercio 5
+        
+    
+    
+    printf("Ingrese el numero de alumnos:");
+    scanf("%d",&alumnos);
+    
+    for(cont=1;cont<=alumnos;cont++){
+        printf("\nIngrese la matricula:");
+        scanf("%d",&matricula);
+            while(matricula){ 
+            suma=0;
+        for(j=1;j<=5;j++){
+        printf("\tIngrese la calificacion %d:",j);
+        scanf("%f",&cal);
+        suma=suma+cal;
+        }
+        prom=suma/5;
+        printf("\nLa matrícula del alumno: %d \nCon un promedio de:%.2f \n",matricula,prom);
+       if(prom>mayor){
+        mayor=prom;
+        mamat=matricula;
+       }
+        if(prom<menor){
+            menor=prom;
+            memat=matricula;
+        }
+        printf("\nIngrese la siguiente matrícula:" );
+        scanf("%d", &matricula);
+        }
+        }
+    printf("\nEl mejor promedio es:%.2f del alumno con matricula:%d",mayor,mamat);
+    printf("\nEl peor promedio es:%.2f del alumno con matricula:%d",menor,memat);
+    break;
+    }
+    
+    
+    
+}
+    
+   
+}
+
